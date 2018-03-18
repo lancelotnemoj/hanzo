@@ -15,3 +15,19 @@
 
 - effect
     效应，在追踪到状态发生变化时，做出的反应，将是一个状态-action的键值对
+
+### How to use it
+
+- install
+
+> npm install saee
+
+- import
+
+```
+const Saee=require("saee")
+
+saee=new Saee()
+```
+
+###
