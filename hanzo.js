@@ -2,19 +2,16 @@
  * @Author: Zuoteng Jiang
  * @Date: 2018-03-15 19:34:06 
  */
+const EventEmitter = require('events').EventEmitter;
+const Util = require("./util")
+const util = new Util()
 
-class Event {
-    constructor() {
-        var events=[
-            "stateChange",
-            "actionChange"
-        ]
-        this.event=events
-        for(let tag of events){
-            this[`on${tag}`]=()=>{}
-        }
-    }
-}
+// class Event {
+//     constructor() {
+//         this.event = {}
+//         // this.emiter = new EventEmitter()
+//     }
+// }
 
 class Hanzo {
     constructor(origin = {}, action = {}) {
@@ -22,20 +19,23 @@ class Hanzo {
         this.action = action;
         this.event = new Event()
     }
-
     /**
+     * 
      * 将传入的object设置为新的state
      * 
      * @param {object} newState 
      * @memberof Hanzo
      */
-    setState(newState) {
+    setState(newState = this.state) {
         if (this.state != newState) {
+            let changes = util.checkChange(this.state, newState)
+            // console.log(changes)
+            // this._signEvent(changes)
+            console.log(this.event.emiter)
             this.state = newState
-            this._activation("stateChange")
+            // this.event.emiter.emit("dht110", 0, 1)
         }
     }
-
     /**
      * 在state中新增>=0项
      * 
@@ -49,7 +49,6 @@ class Hanzo {
         }
         this.setState(newState)
     }
-
     /**
      * 设置action为传入的action
      * 
@@ -59,7 +58,6 @@ class Hanzo {
     setAction(newAction) {
         this.action = newAction
     }
-
     /**
      * 新增一个action对应关系
      * 
@@ -76,7 +74,6 @@ class Hanzo {
             return true
         }
     }
-
     /**
      * 调起一个action
      * 
@@ -88,7 +85,6 @@ class Hanzo {
             this.action[method]();
         }
     }
-
     /**
      * 激活一个事件
      * 
@@ -96,7 +92,7 @@ class Hanzo {
      * @memberof Hanzo
      */
     _activation(event) {
-        this.event[`on${event}`]()
+        // this.event[`on${event}`]()
     }
     /**
      * 添加一个时间监听
@@ -105,13 +101,46 @@ class Hanzo {
      * @param {function} action 
      * @memberof Hanzo
      */
-    addEventListener(eventTag,action){
-        if(arguments.length===2){
-            this.event[eventTag]=action
+    addEventListener(eventTag, action) {
+        if (arguments.length === 2) {
+            this.event[eventTag] = action
         }
     }
+    // _signEvent(changes = {}, route = "") {
+    //     // console.log(`${route}:${changes}`)
+    //     if (util.assertType(changes) == "Object") {
+    //         for (let values in changes) {
+    //             switch (util.assertType(changes[values])) {
+    //                 case "atom":
+    //                     {
+    //                         this.event.emiter.on(values, (previous, next) => {
+    //                             // console.log(`${route}${changes[values]} changes from ${previous} to ${next}`)
+    //                             console.log("heloo")
+    //                         })
+    //                         break
+    //                     }
+    //                 case "Array":
+    //                     {
+    //                         for (var i = 0; i < changes[values].length; i++) {
+    //                             this._signEvent(changes[values][i], `${route}/${values}${i}`)
+    //                         }
+    //                         break
+    //                     }
+    //                 case "Object":
+    //                     {
+    //                         for (let element in values) {
+    //                             this._signEvent(changes[values][element], `${route}/${values}`)
+    //                         }
+    //                         break
+    //                     }
+    //             }
+    //         }
+    //     } else if (util.assertType(changes) == "Array") {
+    //         for (let i = 0; i < changes.length; i++) {
+    //             this._signEvent(changes[i])
+    //         }
+    //     }
+    // }
 }
-
-
 
 module.exports = Hanzo;

@@ -1,22 +1,24 @@
-var Hanzo=require("./hanzo")
+const Hanzo = require("./hanzo")
+const Util = require("./util")
+const fs = require("fs")
 
-var state={
-    key:"value"
-}
+var state = JSON.parse(fs.readFileSync("./config.json").toString())
 
-var app=new Hanzo(state)
+var app = new Hanzo()
 
+app.setState(state)
 app.appendState({
-    test:true
+    test: true
 })
 
-var foo=function(){
+var foo = function () {
     console.log("hello")
 }
 
-app.setAction({"hello":foo})
+app.setAction({
+    "hello": foo
+})
 
-app.appendAction("bye",foo)
+app.appendAction("bye", foo)
 
-app._activation("stateChange")
-console.log(app)
+// console.log(app)

@@ -1,0 +1,13 @@
+{
+    "list": [{
+        "dht11": 11,
+        "human": true
+    }, {
+        "dht11": 12,
+        "human": false
+    }],
+    "ring": {
+        "status": "online"
+    },
+    "time": "15点33分"
+}

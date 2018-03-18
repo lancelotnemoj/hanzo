@@ -4,7 +4,8 @@
   "description": "state mange",
   "main": "app.js",
   "dependencies": {
-    "babel-cli": "^6.0.0"
+    "babel-cli": "^6.0.0",
+    "fast-deep-equal": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
