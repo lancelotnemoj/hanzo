@@ -1,8 +1,8 @@
 {
-  "name": "hanzo",
-  "version": "1.0.0",
-  "description": "state mange",
-  "main": "app.js",
+  "name": "saee",
+  "version": "1.0.2",
+  "description": "A simple state mangment with changes tracing via state action event effect",
+  "main": "saee.js",
   "dependencies": {
     "babel-cli": "^6.0.0",
     "fast-deep-equal": "^1.1.0"
