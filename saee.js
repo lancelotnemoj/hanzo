@@ -120,13 +120,11 @@ class Saee {
     _activateEffect(list) {
         list.forEach(element => {
             if (this.effect.hasOwnProperty(element)) {
-                // console.log("run")
                 this.dispatch(this.effect[element])
             }
         });
     }
     responseChange(changes) {
-        // console.log(this._checkEffect(changes))
         this._activateEffect(this._checkEffect(changes))
     }
 }
