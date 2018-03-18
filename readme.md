@@ -1,6 +1,13 @@
 ### 写在前面
 
+#### 目的
 写这个的目的是为了在小挑的项目里实现一个监控传感器数据，并对数据作出响应，所以需要有状态管理、状态比对、发起action这样的功能，其实和redux在功能上没有新的东西，也不会有他们做的好，只是自己比较好奇，想试一试这样的功能是怎么样一点一点实现的。
+
+#### why hanzo？
+when I typed "mkdir ",my roomate shoutde "Hanzo,Hanzo is behind you!(半藏！后面有个半藏)"
+
+#### why saee?
+caz,the previoused name "hanzo" has been obtained by other project,so i used the first "word" of the four conception of this project 
 
 ### 定义
 
